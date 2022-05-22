@@ -25,7 +25,7 @@ async function updateProfile(event, selectedValue) {
         return;
     }
 
-    const response = await axios.post('http://localhost:5000/api/v1/user/profile/update',
+    const response = await axios.post(`http://${process.env.REACT_APP_SERVER}/api/v1/user/profile/update`,
     {username: username, email: email, name: name, surname: surname, languages: selectedValue },
     {   headers: {
             'x-access-token': localStorage.getItem('user')

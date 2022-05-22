@@ -9,7 +9,7 @@ const FQA = () => {
 
     useEffect( () => { 
         const getCityQuestions = ( async () => {
-            axios.get('http://localhost:5000/api/v1/city/'+id, {
+            axios.get(`http://${process.env.REACT_APP_SERVER}/api/v1/city/`+id, {
             headers: {
                 'x-access-token': localStorage.getItem('user')
             }

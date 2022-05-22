@@ -21,7 +21,7 @@ async function updatePassword(event, selectedValue) {
     hash2.update(newPassword);
     const h2 = hash2.hex();
 
-    const response = await axios.post('http://localhost:5000/api/v1/user/password/update',
+    const response = await axios.post(`http://${process.env.REACT_APP_SERVER}/api/v1/user/password/update`,
     { oldPassword: h, newPassword: h2 },
     {   headers: {
             'x-access-token': localStorage.getItem('user')

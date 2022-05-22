@@ -28,7 +28,7 @@ const Profile = () => {
 
     useEffect( () => { 
         const getUserData = ( async () => {
-            axios.get('http://localhost:5000/api/v1/user/profile', {
+            axios.get(`http://${process.env.REACT_APP_SERVER}/api/v1/user/profile`, {
             headers: {
                 'x-access-token': localStorage.getItem('user')
             }
