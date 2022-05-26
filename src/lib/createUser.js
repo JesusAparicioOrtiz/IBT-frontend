@@ -40,7 +40,7 @@ async function createUser(event, selectedValue) {
     const h2 = hash.hex();
 
 
-    const response = await axios.post(`http://${process.env.REACT_APP_SERVER}/api/v1/user/signup`,{ username: username , password: h, password2: h2, email: email, name: name, surname: surname, languages: selectedValue });
+    const response = await axios.post(`${process.env.REACT_APP_SERVER}/api/v1/user/signup`,{ username: username , password: h, password2: h2, email: email, name: name, surname: surname, languages: selectedValue });
     if(response.status === 200) {
         window.location.href = '/';
     } else {

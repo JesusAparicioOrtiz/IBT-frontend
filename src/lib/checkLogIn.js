@@ -9,7 +9,7 @@ function checkLogIn(event) {
     var hash = sha256.create();
     hash.update(password);
     const h = hash.hex();
-    axios.post(`http://${process.env.REACT_APP_SERVER}/api/v1/user/login`,
+    axios.post(`${process.env.REACT_APP_SERVER}/api/v1/user/login`,
         { username: username , password: h},{ validateStatus: false }).then((response) => {
         if (response.status === 200) {
             localStorage.setItem('user', response.data.token);
