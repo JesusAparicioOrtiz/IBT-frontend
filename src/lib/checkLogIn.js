@@ -13,8 +13,9 @@ function checkLogIn(event) {
         { username: username , password: h},{ validateStatus: false }).then((response) => {
         if (response.status === 200) {
             localStorage.setItem('user', response.data.token);
+            localStorage.setItem('username', response.data.username);
             alert('Logged in!');
-            window.location.href = '/';
+            window.location.href = '/map';
         } else {
             alert(response.data.message);
         }

@@ -1,10 +1,12 @@
 import React from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import checkLogIn from "../lib/checkLogIn";
+import NavigationBar from './Navigationbar';
 
 
 const LoginForm = () => {
-    return (
+    return (<>
+        <NavigationBar />
         <div className="wrapper">
             <h1>Login</h1>
             <Container>
@@ -34,6 +36,7 @@ const LoginForm = () => {
                 </Form>
             </Container>
         </div>
+        </>
     );
 };
 

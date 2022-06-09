@@ -4,6 +4,7 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 import updateProfile from "../lib/updateProfile";
 import axios from 'axios';
+import NavigationBar from './Navigationbar';
 
 const data = [{ value:'English', label: 'English' },
             { value: 'Español', label: 'Español' },
@@ -42,6 +43,8 @@ const Profile = () => {
     
 
     return (
+        <>
+        <NavigationBar />
         <div className="wrapper">
             <h1>Profile</h1>
             <h3>{userData.username}</h3>
@@ -85,15 +88,18 @@ const Profile = () => {
 
                     <Row className="justify-content-md-center">
                         <Col xs={12} md={6} lg={6}>
-                            <Select
-                                value={data.filter(obj => selectedValue.includes(obj.value))}
-                                closeMenuOnSelect={false}
-                                components={animatedComponents}
-                                onChange={handleChange}
-                                isMulti
-                                options={data}
-                                className="mb-3"
-                            />
+                            <Form.Group controlId="Languages" className="mb-3">
+                                <Form.Label>Languages</Form.Label>
+                                <Select
+                                    value={data.filter(obj => selectedValue.includes(obj.value))}
+                                    closeMenuOnSelect={false}
+                                    components={animatedComponents}
+                                    onChange={handleChange}
+                                    isMulti
+                                    options={data}
+                                    className="mb-3"
+                                />
+                            </Form.Group>
                         </Col>
                     </Row>
 
@@ -109,6 +115,7 @@ const Profile = () => {
                 <br/>
             </Container>
         </div>
+        </>
     );
 };
 

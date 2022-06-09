@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import updatePassword from "../lib/updatePassword";
+import NavigationBar from './Navigationbar';
 
 
 const UpdatePasswordForm = () => {
@@ -11,6 +12,8 @@ const UpdatePasswordForm = () => {
     }
 
     return (
+        <>
+        <NavigationBar />
         <div className="wrapper">
             <h1>Profile</h1>
             <Container>
@@ -50,6 +53,7 @@ const UpdatePasswordForm = () => {
                 </Form>
             </Container>
         </div>
+        </>
     );
 };
 

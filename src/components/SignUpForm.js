@@ -85,15 +85,18 @@ const SignUpForm = () => {
 
                     <Row className="justify-content-md-center">
                         <Col xs={12} md={6} lg={6}>
-                            <Select
-                                value={data.filter(obj => selectedValue.includes(obj.value))}
-                                closeMenuOnSelect={false}
-                                components={animatedComponents}
-                                onChange={handleChange}
-                                isMulti
-                                options={data}
-                                className="mb-3"
-                            />
+                            <Form.Group controlId="Languages" className="mb-3">
+                                <Form.Label>Languages</Form.Label>
+                                <Select
+                                    value={data.filter(obj => selectedValue.includes(obj.value))}
+                                    closeMenuOnSelect={false}
+                                    components={animatedComponents}
+                                    onChange={handleChange}
+                                    isMulti
+                                    options={data}
+                                    className="mb-3"
+                                />
+                            </Form.Group>
                         </Col>
                     </Row>
 

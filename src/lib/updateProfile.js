@@ -32,7 +32,7 @@ async function updateProfile(event, selectedValue) {
         }
     });
     if(response.status === 200) {
-        window.location.href = '/';
+        window.location.href = '/map';
     } else {
         alert(response.data.message);
     }
