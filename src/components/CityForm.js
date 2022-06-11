@@ -9,12 +9,11 @@ const CityForm = () => {
         <NavigationBar />
         <div className="wrapper">
             <h1>Add City</h1>
-            <Container>
+            <Container className="mt-4">
                 <Form onSubmit = {addCity}>
                     <Row className="justify-content-md-center">
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="city" className="mb-3">
-                                <Form.Label>City</Form.Label>
                                 <Form.Control type="text" placeholder="Enter city" />
                             </Form.Group>
                         </Col>

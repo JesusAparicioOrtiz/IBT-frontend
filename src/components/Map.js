@@ -1,9 +1,10 @@
 import React, {useState, useEffect } from "react";
 import 'leaflet/dist/leaflet.css';
 import { Icon } from "leaflet";
-import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
+import {MapContainer, TileLayer, Marker, Popup, Polyline} from 'react-leaflet';
 import { Button } from 'react-bootstrap';
 import NavigationBar from './Navigationbar';
+import dateFormatter from "../utils/dateFormatter";
 import axios from 'axios';
 
 const center = [37.392529, -5.994072];
@@ -24,6 +25,7 @@ const marker = new Icon({
 function Map() {
 
     const [userData, setUserData] = useState([]);
+    const [lines, setLines] = useState([]);
 
     useEffect( () => { 
         const getUserCities = ( async () => {
@@ -32,8 +34,15 @@ function Map() {
                 'x-access-token': localStorage.getItem('user')
             }
             }).then(res => {
-                console.log(res)
-                setUserData(res.data.cities);
+                let cities = res.data.cities;
+                let citiesCoordinates = [];
+                cities.forEach(city => {
+                    city.date = dateFormatter(new Date(city.date));
+                    citiesCoordinates.push([city.latitude, city.longitude]);
+                });
+                setLines(citiesCoordinates);
+                cities.sort((a, b) => { return new Date(a.date) - new Date(b.date) });
+                setUserData(cities);
             })
         }) 
         getUserCities();
@@ -55,6 +64,7 @@ function Map() {
                     </Popup>
                     </Marker>)
             })}
+            <Polyline pathOptions={{ color: 'purple' }} positions={lines} />
             </MapContainer>
         </>
     );
