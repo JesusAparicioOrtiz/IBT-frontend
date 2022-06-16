@@ -20,9 +20,11 @@ const UserCities = () => {
             }).then(res => {
                 let cities = res.data.cities;
                 cities.forEach(city => {
-                    city.date = dateFormatter(new Date(city.date));
-                    console.log(new Date(city.date))
+                    city.dateFormatted = dateFormatter(new Date(city.date));
                 });
+                cities.sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                })
                 setUserData(cities);
             })
         }) 
@@ -41,21 +43,26 @@ const UserCities = () => {
             <div class="d-flex justify-content-center">
                 <h1>Cities visited</h1>
             </div>
-            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
-            {userData.map((city, idx) => (
-                <div class="col d-flex justify-content-center">
-                <Toast className="d-inline-block m-1" bg="light" key={idx} onClose={(e) => handleRemoveCity(e,city._id)}>
-                <Toast.Header>
-                    <strong className="me-auto">{city.name}</strong>
-                    <small>Visited in: {city.date}</small>
-                </Toast.Header>
-                <Toast.Body className='Dark'>
-                    <p>Latitude: {city.latitude}</p>
-                    <p>Longitude: {city.longitude}</p>
-                </Toast.Body>
-                </Toast></div>
-            ))}
-            </div>
+            { userData.length > 0 ? (
+                <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                {userData.map((city, idx) => (
+                    <div class="col d-flex justify-content-center">
+                    <Toast className="d-inline-block m-1" bg="light" key={idx} onClose={(e) => handleRemoveCity(e,city._id)}>
+                    <Toast.Header>
+                        <strong className="me-auto">{city.name}</strong>
+                        <small>Visited in: {city.dateFormatted}</small>
+                    </Toast.Header>
+                    <Toast.Body className='Dark'>
+                        <p>Latitude: {city.latitude}</p>
+                        <p>Longitude: {city.longitude}</p>
+                    </Toast.Body>
+                    </Toast></div>
+                ))} 
+                </div>) : (
+                <div class="d-flex justify-content-center">
+                    <h2>You have not visited any city yet!</h2>
+                </div>
+                )}
             </Container>
         </div>
         </>

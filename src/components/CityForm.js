@@ -20,6 +20,13 @@ const CityForm = () => {
                     </Row>
                     <Row className="justify-content-md-center">
                         <Col xs={12} md={6} lg={6}>
+                            <Form.Group controlId="date" className="mb-3">
+                                <Form.Control type="date" placeholder="Enter date" />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-md-center">
+                        <Col xs={12} md={6} lg={6}>
                         <Button variant="primary" type="submit" className="centerbutton"> Submit </Button>
                         </Col>
                     </Row>

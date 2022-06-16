@@ -22,7 +22,9 @@ const Navigationbar = () => {
                     <Nav >
                     {localStorage.getItem('user') ? 
                         <NavDropdown title={localStorage.getItem('username')} id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/account">Account</NavDropdown.Item>
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                            <NavDropdown.Divider />
                             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
                         </NavDropdown> :
                         <Nav>

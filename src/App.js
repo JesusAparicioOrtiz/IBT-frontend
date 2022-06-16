@@ -10,6 +10,7 @@ import FQA from './components/FQA';
 import Map from "./components/Map";
 import CityForm from './components/CityForm';
 import UserCities from './components/UserCities';
+import Account from './components/Account';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signUp" element={<SignUpForm />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/account" element={<Account />} />
           <Route path="/updatePassword" element={<UpdatePasswordForm />} />
           <Route path="/FQA/:id" element={<FQA />} />
           <Route path="/map" element={<Map />} />

@@ -36,12 +36,11 @@ function Map() {
             }).then(res => {
                 let cities = res.data.cities;
                 let citiesCoordinates = [];
+                cities.sort((a, b) => { return new Date(b.date) - new Date(a.date) });
                 cities.forEach(city => {
-                    city.date = dateFormatter(new Date(city.date));
                     citiesCoordinates.push([city.latitude, city.longitude]);
                 });
                 setLines(citiesCoordinates);
-                cities.sort((a, b) => { return new Date(a.date) - new Date(b.date) });
                 setUserData(cities);
             })
         }) 
