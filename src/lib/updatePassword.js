@@ -1,8 +1,9 @@
 import axios from 'axios';
 import sha256 from 'js-sha256';
 import logout from '../lib/logout';
+import {validatePassword} from '../utils/validators';
 
-async function updatePassword(event, selectedValue) {
+async function updatePassword(event) {
     event.preventDefault();
     const oldPassword = event.target.oldPassword.value;
     const newPassword = event.target.newPassword.value;
@@ -10,6 +11,11 @@ async function updatePassword(event, selectedValue) {
 
     if(newPassword !== newPassword2) {
         alert('Passwords do not match');
+        return;
+    }
+
+    if(!validatePassword(newPassword)) {
+        alert('Password must be between 8 and 64 characters long and contain at least one number, one lowercase letter, one uppercase letter and one special character (@$!%*?&)');
         return;
     }
 

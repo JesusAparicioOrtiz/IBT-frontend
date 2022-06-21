@@ -53,8 +53,9 @@ const UserCities = () => {
                         <small>Visited in: {city.dateFormatted}</small>
                     </Toast.Header>
                     <Toast.Body className='Dark'>
-                        <p>Latitude: {city.latitude}</p>
-                        <p>Longitude: {city.longitude}</p>
+                        <p>{city.description}</p>
+                        {/* <p>Latitude: {city.latitude}</p>
+                        <p>Longitude: {city.longitude}</p> */}
                     </Toast.Body>
                     </Toast></div>
                 ))} 

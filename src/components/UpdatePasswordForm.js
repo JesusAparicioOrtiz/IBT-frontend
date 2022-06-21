@@ -22,7 +22,7 @@ const UpdatePasswordForm = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="oldPassword" className="mb-3">
                                 <Form.Label>Old Password</Form.Label>
-                                <Form.Control type="password" placeholder="Enter old password..."/>
+                                <Form.Control type="password" placeholder="Enter old password..." minLength="8" maxLength="64"/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -31,7 +31,7 @@ const UpdatePasswordForm = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="newPassword" className="mb-3">
                                 <Form.Label>New Password</Form.Label>
-                                <Form.Control type="password" placeholder="Enter new password..."/>
+                                <Form.Control type="password" placeholder="Enter new password..." minLength="8" maxLength="64"/>
                             </Form.Group>
                         </Col>
                     </Row>

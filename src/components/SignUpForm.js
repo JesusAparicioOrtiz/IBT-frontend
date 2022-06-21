@@ -33,7 +33,7 @@ const SignUpForm = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="username" className="mb-3">
                                 <Form.Label>Username</Form.Label>
-                                <Form.Control type="text" placeholder="Enter username..." />
+                                <Form.Control type="text" placeholder="Enter username..." minLength="5" maxLength="20"/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -42,7 +42,7 @@ const SignUpForm = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="password" className="mb-3">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Enter password..." />
+                                <Form.Control type="password" placeholder="Enter password..." minLength="8" maxLength="64"/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -51,7 +51,7 @@ const SignUpForm = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="password2" className="mb-3">
                                 <Form.Label>Confirm Password</Form.Label>
-                                <Form.Control type="password" placeholder="Enter password..." />
+                                <Form.Control type="password" placeholder="Enter password..." minLength="8" maxLength="64"/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -69,7 +69,7 @@ const SignUpForm = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="name" className="mb-3">
                                 <Form.Label>Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter name..." />
+                                <Form.Control type="text" placeholder="Enter name..." minLength="3" maxLength="20"/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -78,7 +78,7 @@ const SignUpForm = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="surname" className="mb-3">
                                 <Form.Label>Surname</Form.Label>
-                                <Form.Control type="text" placeholder="Enter surname..." />
+                                <Form.Control type="text" placeholder="Enter surname..." minLength="3" maxLength="20"/>
                             </Form.Group>
                         </Col>
                     </Row>

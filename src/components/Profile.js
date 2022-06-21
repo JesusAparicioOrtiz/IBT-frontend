@@ -54,7 +54,7 @@ const Profile = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="username" className="mb-3">
                                 <Form.Label>Username</Form.Label>
-                                <Form.Control type="text" placeholder="Enter username..." defaultValue={userData.username} />
+                                <Form.Control type="text" placeholder="Enter username..." defaultValue={userData.username} minLength="5" maxLength="20"/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -63,7 +63,7 @@ const Profile = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="email" className="mb-3">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email..." defaultValue={userData.email}/>
+                                <Form.Control type="email" placeholder="Enter email..." defaultValue={userData.email} />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -72,7 +72,7 @@ const Profile = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="name" className="mb-3">
                                 <Form.Label>Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter name..." defaultValue={userData.name}/>
+                                <Form.Control type="text" placeholder="Enter name..." defaultValue={userData.name} minLength="3" maxLength="20"/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -81,7 +81,7 @@ const Profile = () => {
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="surname" className="mb-3">
                                 <Form.Label>Surname</Form.Label>
-                                <Form.Control type="text" placeholder="Enter surname..." defaultValue={userData.surname}/>
+                                <Form.Control type="text" placeholder="Enter surname..." defaultValue={userData.surname} minLength="3" maxLength="20"/>
                             </Form.Group>
                         </Col>
                     </Row>

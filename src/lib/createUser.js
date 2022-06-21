@@ -1,5 +1,6 @@
 import axios from 'axios';
 import sha256 from 'js-sha256';
+import {validateEmail, validatePassword} from '../utils/validators';
 
 async function createUser(event, selectedValue) {
     event.preventDefault();
@@ -10,24 +11,35 @@ async function createUser(event, selectedValue) {
     const name = event.target.name.value;
     const surname = event.target.surname.value;
 
-    if(username.length < 5) {
-        alert('Username must be at least 5 characters long');
+    if(username.length < 5 || username.length > 20) {
+        alert('Username must be between 5 and 20 characters long');
         return;
     }
     if(password !== password2) {
         alert('Passwords do not match');
         return;
     }
-    if(!verifyEmail(email)) {
+
+    if(!validatePassword(password)) {
+        alert('Password must be between 8 and 64 characters long and contain at least one number, one lowercase letter, uppercase letter and one special character (@$!%*?&)');
+        return;
+    }
+    
+    if(!validateEmail(email)) {
         alert('Email is not valid');
         return;
     }
-    if(name.length < 5) {
-        alert('Name must be at least 5 characters long');
+    if(name.length < 3 || name.length > 20) {
+        alert('Name must be between 3 and 20 characters long');
         return;
     }
-    if(surname.length < 5) {
-        alert('Surname must be at least 5 characters long');
+    if(surname.length < 3 || surname.length > 20) {
+        alert('Surname must be between 3 and 20 characters long');
+        return;
+    }
+
+    if(selectedValue.length === 0) {
+        alert('Please select a language');
         return;
     }
 
@@ -46,11 +58,6 @@ async function createUser(event, selectedValue) {
     } else {
         alert(response.data.message);
     }
-}
-
-function verifyEmail(email){
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
 }
 
 export default createUser;

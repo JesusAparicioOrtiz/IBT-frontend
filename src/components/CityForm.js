@@ -14,7 +14,14 @@ const CityForm = () => {
                     <Row className="justify-content-md-center">
                         <Col xs={12} md={6} lg={6}>
                             <Form.Group controlId="city" className="mb-3">
-                                <Form.Control type="text" placeholder="Enter city" />
+                                <Form.Control type="text" placeholder="Enter city" minLength="3" maxLength="30"/>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-md-center">
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group controlId="description" className="mb-3">
+                                <Form.Control type="text" placeholder="Enter a description" minLength="10" maxLength="300"/>
                             </Form.Group>
                         </Col>
                     </Row>
