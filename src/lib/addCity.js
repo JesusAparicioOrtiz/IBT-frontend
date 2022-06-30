@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-function addCity(event) {
+function addCity(event, city) {
+    console.log(city)
     alert("Adding city...");
     event.preventDefault();
-    const city = event.target.city.value;
     const description = event.target.description.value;
     let date;
 
@@ -20,8 +20,8 @@ function addCity(event) {
         return;
     }
 
-    if(city.length < 3 || city.length > 30) {
-        alert('City must be between 3 and 30 characters long');
+    if(city.name.length < 3) {
+        alert('City must be higher than 3 characters');
         return;
     }
 

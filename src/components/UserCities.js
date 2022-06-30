@@ -54,10 +54,9 @@ const UserCities = () => {
                     </Toast.Header>
                     <Toast.Body className='Dark'>
                         <p>{city.description}</p>
-                        {/* <p>Latitude: {city.latitude}</p>
-                        <p>Longitude: {city.longitude}</p> */}
                     </Toast.Body>
-                    </Toast></div>
+                    </Toast>
+                    </div>
                 ))} 
                 </div>) : (
                 <div class="d-flex justify-content-center">
