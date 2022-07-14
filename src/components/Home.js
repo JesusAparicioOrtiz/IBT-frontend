@@ -10,10 +10,10 @@ const Home = () => {
             </div>
             <div className="row justify-content-around mt-4">
                 <div class="col-6">
-                    <a href="/login"> <Button variant="primary" className="btn-lg">Login</Button> </a>
+                    <a href="/login"> <Button variant="primary" className="btn-lg">LogIn</Button> </a>
                 </div>
                 <div class="col-6">
-                    <a href="/signUp"> <Button variant="primary" className="btn-lg">Singup</Button> </a>
+                    <a href="/signUp"> <Button variant="primary" className="btn-lg">SignUp</Button> </a>
                 </div>
             </div>
         </Container>

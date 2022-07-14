@@ -15,15 +15,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-
-  // const [token, setToken] = useToken();
-  // const [loginStatus, setLoginStatus] = useState(false);
-
-  // if(!token) {
-  //   return <LandingPage setToken={setToken} />
-  // }
-
-
   return (
     <div className="App">
       <BrowserRouter>

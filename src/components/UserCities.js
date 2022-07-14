@@ -31,23 +31,34 @@ const UserCities = () => {
         getUserCities();
     }, []);
 
-    const handleRemoveCity = async (event,cityId) => {
-        let succeed = await removeCity(event, cityId);
-        succeed ? setUserData(userData.filter(city => city._id !== cityId)) : console.log("Error");
+    const handleRemoveCity = (event,cityId) => {
+        if(window.confirm("Do you want to remove this place?")) {
+            removeCity(event, cityId).then((res) => {
+                if(res) {
+                    setUserData(userData.filter(city => city.id !== cityId));
+                } else {
+                    alert("Error removing city");
+                }
+            }).catch(err => {
+                if(err) {
+                    alert("Error removing city");
+                }
+            });
+        }
     }
 
     return (<>
         <NavigationBar />
         <div className="wrapper">
             <Container className="justify-content-center">
-            <div class="d-flex justify-content-center">
-                <h1>Cities visited</h1>
+            <div className="d-flex justify-content-center">
+                <h1>Places visited</h1>
             </div>
             { userData.length > 0 ? (
-                <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                <div className="row row-cols-1 row-cols-md-3 g-4 mt-2">
                 {userData.map((city, idx) => (
-                    <div class="col d-flex justify-content-center">
-                    <Toast className="d-inline-block m-1" bg="light" key={idx} onClose={(e) => handleRemoveCity(e,city._id)}>
+                    <div className="col d-flex justify-content-center" key={idx}>
+                    <Toast className="d-inline-block m-1" bg="light" onClose={(e) => handleRemoveCity(e,city.id)}>
                     <Toast.Header>
                         <strong className="me-auto">{city.name}</strong>
                         <small>Visited in: {city.dateFormatted}</small>
@@ -59,7 +70,7 @@ const UserCities = () => {
                     </div>
                 ))} 
                 </div>) : (
-                <div class="d-flex justify-content-center">
+                <div className="d-flex justify-content-center">
                     <h2>You have not visited any city yet!</h2>
                 </div>
                 )}

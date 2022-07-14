@@ -1,5 +1,5 @@
 import React, {useState } from "react";
-import { Button, Form, Container, Row, Col } from "react-bootstrap";
+import { Button, Form, Container, Row, Col, Spinner } from "react-bootstrap";
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 import createUser from "../lib/createUser";
@@ -12,6 +12,7 @@ const animatedComponents = makeAnimated();
 
 const SignUpForm = () => {
 
+    const [loading, setLoading] = useState(false);
     const [selectedValue, setSelectedValue] = useState([]);
 
     const handleChange = (e) => {
@@ -20,13 +21,20 @@ const SignUpForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createUser(e, selectedValue);
+        setLoading(true);
+        createUser(e, selectedValue).then((res) => {
+            setLoading(false);
+            window.location.href = '/';
+        }).catch((error) => {
+            alert(error);
+            setLoading(false);
+        });
     }
     
 
     return (
         <div className="wrapper">
-            <h1>Signup</h1>
+            <h1>Sign Up</h1>
             <Container>
                 <Form onSubmit = {handleSubmit}>
                     <Row className="justify-content-md-center">
@@ -102,9 +110,14 @@ const SignUpForm = () => {
 
                     <Row className="justify-content-md-center">
                         <Col xs={12} md={6} lg={6}>
-                            <Button variant="primary" type="submit"> Submit </Button>
+                            <Button variant="primary" type="submit" className="mb-3"> Submit </Button>
                         </Col>
                     </Row>
+                    {loading?<Row className="justify-content-md-center">
+                        <Col xs={12} md={6} lg={6}>
+                            <Spinner animation="border" variant="primary" />
+                        </Col>
+                    </Row>:null}
                 </Form>
             </Container>
         </div>

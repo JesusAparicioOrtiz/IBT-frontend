@@ -44,3 +44,7 @@ code {
 .invert{
   filter: invert(100%);
 }
+
+.popo{
+  align-items: center;
+}

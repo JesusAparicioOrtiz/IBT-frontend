@@ -1,9 +1,10 @@
-import React from "react";
-import {  Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
+import React, {useState} from "react";
+import {  Container, Navbar, Nav, NavDropdown, Form, Button, Row, Col} from "react-bootstrap";
 import logout from "../lib/logout";
 
 
-const Navigationbar = () => {
+const Navigationbar = (props) => {
+
     return (
                 <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container fluid>
@@ -14,14 +15,25 @@ const Navigationbar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                     {/* <Nav.Link href="/addCity">Add City</Nav.Link> */}
-                    <NavDropdown title="Cities" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="/addCity">Add City</NavDropdown.Item>
-                        <NavDropdown.Item href="/userCities">My Cities</NavDropdown.Item>
+                    <NavDropdown title="Places" id="collasible-nav-dropdown">
+                        <NavDropdown.Item href="/addCity">Add Place</NavDropdown.Item>
+                        <NavDropdown.Item href="/userCities">My Places</NavDropdown.Item>
                     </NavDropdown>
+                    {props.dateFilters ? props.dateFilters() : null}
+                    {props.lineFilter ? <>
+                        <Navbar.Brand className="ms-2">
+                            Lines:
+                        </Navbar.Brand>
+                        <div className="d-flex align-items-center">
+                        {props.lineFilter()}
+                        </div>
+                        </>
+                        : null
+                    }
                     </Nav>
                     <Nav >
                     {localStorage.getItem('user') ? 
-                        <NavDropdown title={localStorage.getItem('username')} id="collasible-nav-dropdown">
+                        <NavDropdown title={localStorage.getItem('username')} id="collasible-nav-dropdown" align="end">
                             <NavDropdown.Item href="/account">Account</NavDropdown.Item>
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Divider />

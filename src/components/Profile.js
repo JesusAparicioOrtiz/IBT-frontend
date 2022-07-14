@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from "react";
-import { Button, Form, Container, Row, Col } from "react-bootstrap";
+import { Button, Form, Container, Row, Col, Spinner } from "react-bootstrap";
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 import updateProfile from "../lib/updateProfile";
@@ -15,6 +15,7 @@ const animatedComponents = makeAnimated();
 
 const Profile = () => {
 
+    const [loading, setLoading] = useState(false);
     const [selectedValue, setSelectedValue] = useState([]);
     const [userData, setUserData] = useState([]);
 
@@ -24,7 +25,14 @@ const Profile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateProfile(e, selectedValue);
+        setLoading(true);
+        updateProfile(e, selectedValue).then((res) => {
+            setLoading(false);
+            window.location.href = '/map';
+        }).catch((error) => {
+            alert(error);
+            setLoading(false);
+        });
     }
 
     useEffect( () => { 
@@ -103,7 +111,7 @@ const Profile = () => {
                         </Col>
                     </Row>
 
-                    <Row className="justify-content-md-center">
+                    <Row className="justify-content-md-center mb-3">
                         <Col xs={3} md={3} lg={3}>
                             <Button variant="primary" type="submit"> Update </Button>
                         </Col>
@@ -111,6 +119,11 @@ const Profile = () => {
                             <a href="/updatePassword"> <Button variant="primary">Update Password</Button> </a>
                         </Col>
                     </Row>
+                    {loading?<Row className="justify-content-md-center">
+                        <Col xs={12} md={6} lg={6}>
+                            <Spinner animation="border" variant="primary" />
+                        </Col>
+                    </Row>:null}
                 </Form>
                 <br/>
             </Container>

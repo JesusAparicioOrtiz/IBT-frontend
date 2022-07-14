@@ -2,9 +2,8 @@ import React, {useState, useEffect } from "react";
 import 'leaflet/dist/leaflet.css';
 import { Icon } from "leaflet";
 import {MapContainer, TileLayer, Marker, Popup, Polyline} from 'react-leaflet';
-import { Button } from 'react-bootstrap';
+import {  Container, Navbar, Nav, NavDropdown, Form, Button, Row, Col} from "react-bootstrap";
 import NavigationBar from './Navigationbar';
-import dateFormatter from "../utils/dateFormatter";
 import axios from 'axios';
 
 const center = [37.392529, -5.994072];
@@ -26,6 +25,55 @@ function Map() {
 
     const [userData, setUserData] = useState([]);
     const [lines, setLines] = useState([]);
+    const [linesFiltered, setLinesFiltered] = useState([]);
+    const [userDataFiltered, setUserDataFiltered] = useState([]);
+
+    function DateFilter() {
+        var [fromDate, setFromDate] = useState('');
+        var [toDate, setToDate] = useState('');
+
+        const filterPlaces = (e) => {
+            e.preventDefault();
+            var from = fromDate ? new Date(fromDate) : new Date(0);
+            var to = toDate ? new Date(toDate) : new Date();
+            var filtered = userData.filter(place => {
+                return new Date(place.date) >= from && new Date(place.date) <= to;
+            });
+            setUserDataFiltered(filtered);
+            let linesAux = [];
+            filtered.forEach(place => {
+                linesAux.push([place.latitude, place.longitude]);
+            });
+            setLines(linesAux);
+            setLinesFiltered(linesAux);
+        }
+
+        return (<>
+        <Form className="d-flex" onSubmit = {filterPlaces}>
+            <Form.Control
+                type="date"
+                placeholder="From"
+                className="me-2"
+                value={fromDate}
+                onChange={(e) => setFromDate(e.target.value)}
+            />
+            <Form.Control
+                type="date"
+                placeholder="To"
+                className="me-2"
+                value={toDate}
+                onChange={(e) => setToDate(e.target.value)}
+            />
+            <Button variant="outline-light" type="submit">Filter</Button>
+        </Form>
+        </>);
+    }
+
+    function LineFilter() {
+        return (<>
+            <Form.Range min={0} max={lines.length-1} step={1} onChange={(e) => setLinesFiltered(lines.slice(e.target.value))} />
+        </>);
+    }
 
     useEffect( () => { 
         const getUserCities = ( async () => {
@@ -41,29 +89,32 @@ function Map() {
                     citiesCoordinates.push([city.latitude, city.longitude]);
                 });
                 setLines(citiesCoordinates);
+                setLinesFiltered(citiesCoordinates);
                 setUserData(cities);
+                setUserDataFiltered(cities);
             })
         }) 
         getUserCities();
     }, []);
 
     return (<>
-        <NavigationBar />
+        <NavigationBar dateFilters={DateFilter} lineFilter={LineFilter} />
             <MapContainer center={center} zoom={3} scrollWheelZoom={true} minZoom={3}>
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {userData.map((item,index)=>{
-                return (<Marker position={[item.latitude, item.longitude]} icon={marker}>
+            {userDataFiltered.map((item,index)=>{
+                return (<Marker position={[item.latitude, item.longitude]} icon={marker} key={index}>
                     <Popup>
                         <div>
                             <h4>{item.name}</h4>
+                            <p>{item.date.split('T')[0]}</p>
                         </div>
                     </Popup>
                     </Marker>)
             })}
-            <Polyline pathOptions={{ color: 'purple' }} positions={lines} />
+            <Polyline pathOptions={{ color: 'purple' }} positions={linesFiltered} />
             </MapContainer>
         </>
     );
