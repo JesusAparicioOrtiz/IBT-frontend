@@ -11,31 +11,23 @@ const CityForm = () => {
     const [selectedValue, setSelectedValue] = useState([]);
 
     const handleSubmit = (e) => {
-        // e.preventDefault();
-        // setLoading(true);
-        // if(selectedValue.length === 0) {
-        //     alert('Please select a place');
-        //     setLoading(false);
-        //     return;
-        // }
-        // const selectedCity = cities.filter(x => x.value === selectedValue.value)[0];
+        e.preventDefault();
+        if(selectedValue.length === 0) {
+            alert('Please select a place');
+            return;
+        }
 
-        // delete selectedCity.label;
-        // selectedCity.name = selectedCity.value;
-        // delete selectedCity.value;
-        // addCity(e, selectedCity).then((res) => {
-        //     setLoading(false);
-        //     window.location.href = '/map';
-        // }).catch((error) => {
-        //     alert(error);
-        //     setLoading(false);
-        // });
+        if(cities.indexOf(selectedValue) === -1) {
+            alert('This place is not available');
+            return;
+        }
+
+        window.location.href = `/forum/${selectedValue.value}`;
     }
 
 
     useEffect( async () => { 
         axios.get(`${process.env.REACT_APP_SERVER}/api/v1/city/all`).then(res => {
-            console.log(res.data)
             setCities( res.data.map(city => { return { value: city, label: city } }));
         })
     }, []);

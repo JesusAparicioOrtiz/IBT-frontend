@@ -12,6 +12,8 @@ import CityForm from './components/CityForm';
 import UserCities from './components/UserCities';
 import Account from './components/Account';
 import ForumSearch from './components/ForumSearch';
+import Forum from './components/Forum';
+import QuestionForm from './components/QuestionForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -31,6 +33,8 @@ function App() {
           <Route path="/addCity" element={<CityForm />} />
           <Route path="/userCities" element={<UserCities />} />
           <Route path="/forumSearch" element={<ForumSearch />} />
+          <Route path="/forum/:id" element={<Forum />} />
+          <Route path="/forum/addquestion/:id" element={<QuestionForm />} />
         </Routes>
       </BrowserRouter>
     </div>
