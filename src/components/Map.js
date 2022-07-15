@@ -49,7 +49,7 @@ function Map() {
         }
 
         return (<>
-        <Form className="d-flex" onSubmit = {filterPlaces}>
+        <Form className="d-flex" onSubmit = {filterPlaces} >
             <Form.Control
                 type="date"
                 placeholder="From"
@@ -64,7 +64,7 @@ function Map() {
                 value={toDate}
                 onChange={(e) => setToDate(e.target.value)}
             />
-            <Button variant="outline-light" type="submit">Filter</Button>
+            <Button variant="outline-light" type="submit" >Filter</Button>
         </Form>
         </>);
     }

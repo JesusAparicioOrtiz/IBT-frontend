@@ -14,11 +14,11 @@ const Navigationbar = (props) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                    {/* <Nav.Link href="/addCity">Add City</Nav.Link> */}
                     <NavDropdown title="Places" id="collasible-nav-dropdown">
                         <NavDropdown.Item href="/addCity">Add Place</NavDropdown.Item>
                         <NavDropdown.Item href="/userCities">My Places</NavDropdown.Item>
                     </NavDropdown>
+                    <Nav.Link href="/forumSearch" className="me-2">Forum</Nav.Link>
                     {props.dateFilters ? props.dateFilters() : null}
                     {props.lineFilter ? <>
                         <Navbar.Brand className="ms-2">

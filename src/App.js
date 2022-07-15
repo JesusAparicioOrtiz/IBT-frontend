@@ -11,6 +11,7 @@ import Map from "./components/Map";
 import CityForm from './components/CityForm';
 import UserCities from './components/UserCities';
 import Account from './components/Account';
+import ForumSearch from './components/ForumSearch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/map" element={<Map />} />
           <Route path="/addCity" element={<CityForm />} />
           <Route path="/userCities" element={<UserCities />} />
+          <Route path="/forumSearch" element={<ForumSearch />} />
         </Routes>
       </BrowserRouter>
     </div>
